@@ -3,7 +3,11 @@ __N2_COMMAND_ERRNO=0
 __N2_COMMAND_UNIX_MILLIS=0
 
 function __n2_unix_millis {
-    date +%s%03N
+    if [ "$(uname -s)" = Linux ]; then
+        date +%s%03N
+    else
+        date +%s000
+    fi
 }
 
 function __n2_pretty_date {
